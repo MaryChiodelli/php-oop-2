@@ -39,10 +39,6 @@ $cuscino = new PetKennel(
   ]
 );
 
-var_dump($crocchette);
-var_dump($kong);
-var_dump($cuscino);
-
 $order = new Order(
   [
     'name' => 'Mario Rossi',
@@ -54,4 +50,5 @@ $order->addToCart($crocchette, 1);
 $order->addToCart($kong, 3);
 $order->addToCart($cuscino, 2);
 
-var_dump($order);
+var_dump($order->cart);
+var_dump($order->price);

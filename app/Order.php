@@ -7,7 +7,7 @@ class Order
   public $name;
   public $address;
   public $cart = [];
-  public $price;
+  public $price = 0;
 
   function __construct($param) {
     $this->name = $param['name'];
@@ -15,6 +15,20 @@ class Order
   }
 
   public function addToCart($product, $quantity) {
-    $this->cart[] = [$product->name, $quantity];
+    $this->cart[] = [
+      'name' => $product->name,
+      'price' => $product->price,
+      'quantity' => $quantity
+    ];
+    $this->setPrice();
+  }
+
+  public function setPrice() {
+    $sum = 0;
+    foreach($this->cart as $p) {
+      $price = $p['price'] * $p['quantity'];
+      $sum += $price;
+    }
+    return $this->price = $sum;
   }
 }
