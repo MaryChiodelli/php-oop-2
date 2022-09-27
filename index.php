@@ -4,6 +4,8 @@ include_once __DIR__ . '/app/PetFood.php';
 include_once __DIR__ . '/app/PetGame.php';
 include_once __DIR__ . '/app/PetKennel.php';
 
+include_once __DIR__ . '/app/Order.php';
+
 $crocchette = new PetFood(
   [
     'cover' => 'https://arcaplanet.vtexassets.com/arquivos/ids/224338-1600-auto?v=637454741671700000&width=1600&height=auto&aspect=true',
@@ -40,3 +42,16 @@ $cuscino = new PetKennel(
 var_dump($crocchette);
 var_dump($kong);
 var_dump($cuscino);
+
+$order = new Order(
+  [
+    'name' => 'Mario Rossi',
+    'address' => '4583 Better Street'
+  ]
+);
+
+$order->addToCart($crocchette, 1);
+$order->addToCart($kong, 3);
+$order->addToCart($cuscino, 2);
+
+var_dump($order);
