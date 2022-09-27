@@ -2,15 +2,15 @@
 
 include_once __DIR__ . '/Product.php';
 
-class PetGame extends Product
+class PetKennel extends Product
 {
   public $size;
-  public $material;
+  public $materials;
 
   function __construct($param)
   {
     parent::__construct($param);
     $this->size = $param['size'];
-    $this->material = $param['material'];
+    $this->materials = $param['materials'];
   }
 }
