@@ -11,6 +11,6 @@ class PetFood extends Product
   {
     parent::__construct($param);
     $this->weight = $param['weight'];
-    $this->ingedients = $param['ingedients'];
+    $this->ingredients = $param['ingredients'];
   }
 }

@@ -7,9 +7,9 @@ class Order
   public $name;
   public $address;
   public $cart = [];
-  public $base_price = 0;
-  public $shipping_cost;
-  public $final_price;
+  public $price = 0;
+  public $weight = 0;
+  public $shipping_cost = 10;
 
   function __construct($param) {
     $this->name = $param['name'];
@@ -20,29 +20,44 @@ class Order
     $this->cart[] = [
       'name' => $product->name,
       'price' => $product->price,
+      'shipping_weight' => $product->shipping_weight,
       'quantity' => $quantity
     ];
 
-    $this->setBasePrice();
+    $this->setPrice();
+    $this->setWeight();
     $this->setShippingCost();
 
-    $this->final_price = $this->base_price + $this->shipping_cost;
+    $this->price += $this->shipping_cost;
   }
 
-  public function setBasePrice() {
-    $sum = 0;
+  public function setPrice() {
+    $tot_price = 0;
     foreach($this->cart as $p) {
       $price = $p['price'] * $p['quantity'];
-      $sum += $price;
+      $tot_price += $price;
     }
-    return $this->base_price = $sum;
+    return $this->price = $tot_price;
+  }
+
+  public function setWeight() {
+    $tot_weight = 0;
+    foreach($this->cart as $p) {
+      $weight = $p['shipping_weight'] * $p['quantity'];
+      $tot_weight += $weight;
+    }
+    return $this->weight = $tot_weight;
   }
 
   public function setShippingCost() {
-    if ($this->base_price > 200) {
+    if ($this->price > 200){
       $this->shipping_cost = 0;
-    } else {
+    } else if ($this->weight > 100) {
+      $this->shipping_cost = 50;
+    } else if ($this->weight > 200) {
       $this->shipping_cost = 80;
+    } else if ($this->weight > 300) {
+      $this->shipping_cost = 120;
     }
   }
 }

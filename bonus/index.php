@@ -12,8 +12,9 @@ $crocchette = new PetFood(
     'name' => 'Virtus Dog Adult Rustic',
     'brand' => 'Virtus',
     'price' => 54.90,
+    'shipping_weight' => 8,
     'weight' => 7.5,
-    'ingedients' => ['tacchino', 'maiale', 'patate']
+    'ingredients' => ['tacchino', 'maiale', 'patate']
   ]
 );
 
@@ -23,6 +24,7 @@ $kong = new PetGame(
     'name' => 'KONG King Classic',
     'brand' => 'Kong',
     'price' => 35.90,
+    'shipping_weight' => 0.6,
     'size' => 'xxl',
     'material' => 'caucciù'
   ]
@@ -34,6 +36,7 @@ $cuscino = new PetKennel(
     'name' => 'Cuscino Nautica',
     'brand' => 'Croci',
     'price' => 34.99,
+    'shipping_weight' => 0.3,
     'size' => 105,
     'materials' => ['cotone']
   ]
@@ -51,6 +54,4 @@ $order->addToCart($kong, 3);
 $order->addToCart($cuscino, 2);
 
 var_dump($order->cart);
-var_dump($order->base_price);
-var_dump($order->shipping_cost);
-var_dump($order->final_price);
+var_dump($order->price);
