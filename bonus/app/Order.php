@@ -10,6 +10,7 @@ class Order
   public $price = 0;
   public $weight = 0;
   public $shipping_cost = 10;
+  public $tot_price;
 
   function __construct($param) {
     $this->name = $param['name'];
@@ -23,12 +24,18 @@ class Order
       'shipping_weight' => $product->shipping_weight,
       'quantity' => $quantity
     ];
+    $this->set_tot_price();
+  }
 
+  public function set_tot_price() {
     $this->setPrice();
-    $this->setWeight();
     $this->setShippingCost();
 
-    $this->price += $this->shipping_cost;
+    $this->tot_price = $this->price + $this->shipping_cost;
+  }
+
+  public function get_tot_price() {
+    return $this->tot_price;
   }
 
   public function setPrice() {
@@ -37,7 +44,7 @@ class Order
       $price = $p['price'] * $p['quantity'];
       $tot_price += $price;
     }
-    return $this->price = $tot_price;
+    $this->price = $tot_price;
   }
 
   public function setWeight() {
@@ -46,10 +53,11 @@ class Order
       $weight = $p['shipping_weight'] * $p['quantity'];
       $tot_weight += $weight;
     }
-    return $this->weight = $tot_weight;
+    $this->weight = $tot_weight;
   }
 
   public function setShippingCost() {
+    $this->setWeight();
     if ($this->price > 200){
       $this->shipping_cost = 0;
     } else if ($this->weight > 100) {

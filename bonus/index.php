@@ -54,4 +54,4 @@ $order->addToCart($kong, 3);
 $order->addToCart($cuscino, 2);
 
 var_dump($order->cart);
-var_dump($order->price);
+var_dump($order->get_tot_price());
