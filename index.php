@@ -3,6 +3,7 @@
 include_once __DIR__ . '/app/PetFood.php';
 include_once __DIR__ . '/app/PetGame.php';
 include_once __DIR__ . '/app/PetKennel.php';
+include_once __DIR__ . '/app/Materials.php';
 
 include_once __DIR__ . '/app/Order.php';
 
@@ -24,7 +25,7 @@ $kong = new PetGame(
     'brand' => 'Kong',
     'price' => 35.90,
     'size' => 'xxl',
-    'material' => 'caucciù'
+    'materials' => ['caucciù']
   ]
 );
 
@@ -52,3 +53,7 @@ $order->addToCart($cuscino, 2);
 
 var_dump($order->cart);
 var_dump($order->price);
+
+var_dump($kong->getMaterials());
+$kong->setMaterials(['corda', 'legno', 'plastica']);
+var_dump($kong->getMaterials());
