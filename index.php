@@ -57,3 +57,9 @@ var_dump($order->price);
 var_dump($kong->getMaterials());
 $kong->setMaterials(['corda', 'legno', 'plastica']);
 var_dump($kong->getMaterials());
+
+try {
+  $order->sendOrder();
+} catch (Exception $e) {
+  echo $e->getMessage();
+}

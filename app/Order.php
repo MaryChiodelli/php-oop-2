@@ -31,4 +31,16 @@ class Order
     }
     return $this->price = $sum;
   }
+
+  public function getCart() {
+    return $this->cart;
+  }
+
+  public function sendOrder() {
+    if (!$this->cart) {
+      throw new Exception('Il carrello è vuoto.');
+    } else {
+      echo 'Ordine avvenuto con successo';
+    }
+  }
 }
